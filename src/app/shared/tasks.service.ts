@@ -5,13 +5,13 @@ import {Observable} from 'rxjs';
 import * as moment from 'moment';
 
 export interface Task {
-  id?: string
-  title: string
-  date?: string
+  id?: string;
+  title: string;
+  date?: string;
 }
 
 interface CreateResponse {
-  name: string
+  name: string;
 }
 
 @Injectable({providedIn: 'root'})
@@ -24,10 +24,10 @@ export class TasksService {
       .get<Task[]>(`${TasksService.url}/${date.format('DD-MM-YYYY')}.json`)
       .pipe(map(tasks => {
         if (!tasks) {
-          return []
+          return [];
         }
-        return Object.keys(tasks).map(key => ({...tasks[key], id: key}))
-      }))
+        return Object.keys(tasks).map(key => ({...tasks[key], id: key}));
+      }));
   }
 
   create(task: Task): Observable<Task> {
@@ -40,6 +40,6 @@ export class TasksService {
 
   remove(task: Task): Observable<void> {
     return this.http
-      .delete<void>(`${TasksService.url}/${task.date}/${task.id}.json`)
+      .delete<void>(`${TasksService.url}/${task.date}/${task.id}.json`);
   }
 }

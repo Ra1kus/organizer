@@ -3,14 +3,14 @@ import * as moment from 'moment';
 import { DateService } from '../shared/date.service';
 
 interface Day {
-  value: moment.Moment
-  active: boolean
-  disabled: boolean
-  selected: boolean
+  value: moment.Moment;
+  active: boolean;
+  disabled: boolean;
+  selected: boolean;
 }
 
 interface Week {
-  days: Day[]
+  days: Day[];
 }
 
 @Component({
@@ -20,8 +20,7 @@ interface Week {
 })
 
 export class CalendarComponent implements OnInit {
-
-  calendar: Week[]
+  calendar: Week[] = [];
 
   constructor(private dateService: DateService) { }
 
@@ -49,9 +48,9 @@ export class CalendarComponent implements OnInit {
 
             return {
               value, active, disabled, selected
-            }
+            };
           })
-      })
+      });
     }
 
     this.calendar = calendar;
@@ -60,5 +59,4 @@ export class CalendarComponent implements OnInit {
   select(day: moment.Moment) {
     this.dateService.changeDate(day);
   }
-
 }
